@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="xsl/doc/pazpar2-docs.xsl"?>
+<pazpar2
+		xmlns="http://www.indexdata.com/pazpar2/1.0"
+		xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+	<!-- non-zero to enable threaded operation -->
+	<threads number="4"/>
+
+	<server>
+		<listen host="localhost" port="9004"/>
+		<proxy host="localhost" port="80"/>
+
+		<!-- SWB Site -->
+		<!-- Examples of ervices: UB Konstanz (KN) and UB Tübingen (TUEB)
+		<    xi:include href="services/BSZTUE.xml"/ >
+		<    xi:include href="services/BSZULM.xml"/-->
+		<xi:include href="services/BSZKN.xml"/>
+
+		<icu_chain id="relevance" locale="en">
+			<transform rule="[:Control:] Any-Remove"/>
+			<tokenize rule="l"/>
+			<transform rule="NFD; [[:Control:][:WhiteSpace:][:Punctuation:][:Symbol:][:Math:][:Nonspacing Mark:]] Remove; NFC"/>
+			<casemap rule="l"/>
+		</icu_chain>
+
+		<icu_chain id="sort" locale="en">
+			<transform rule="[[:Control:][:WhiteSpace:][:Punctuation:][:Math:]] Remove"/>
+			<casemap rule="l"/>
+		</icu_chain>
+
+		<icu_chain id="mergekey" locale="en">
+			<tokenize rule="s"/>
+			<transform rule="NFD; [[:Control:][:WhiteSpace:][:Punctuation:][:Symbol:][:Math:][:Nonspacing Mark:]] Remove; NFC"/>
+			<casemap rule="l"/>
+		</icu_chain>
+
+	</server>
+</pazpar2>

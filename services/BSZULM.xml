@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xsl/doc/pazpar2-docs.xsl"?>
+<service
+		xmlns="http://www.indexdata.com/pazpar2/1.0"
+		xmlns:xi="http://www.w3.org/2001/XInclude"
+		>
+<!--
+	Targets used:
+
+        * SWB (Solr)
+		* Nationallizenzen
+		* EDS/Ebsco
+        
+        * (deakt.) SWB(Z39.50), Summon (Ub Kn)
+
+	2014/2015: Clemens Elmlinger, BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
+-->
+        <rank cluster="no"/>
+
+        <!-- settings src="settings/swbKN.xml"/>
+        <settings>
+                <set target="z3950n.bsz-bw.de:20210/swb367" name="pz:name" value="SWB Lokale Sicht UB Konstanz"/>
+
+        </settings>
+        
+        <settings src="settings/summonT.xml"/>
+        <settings>
+		<set target="eiger.bsz-bw.de:8000/summon" name="pz:name" value="Summon"/>
+        </settings -->
+
+
+	<!--settings src="settings/gbv-sru-neu.xml"/>
+	<settings>
+
+		<set target="sru.gbv.de/natliz" name="pz:name" value="Nationallizenzen Bücher"/>
+
+		<set target="sru.gbv.de/natlizzss" name="pz:name" value="Nationallizenzen Zeitschriften"/>
+	</settings-->
+	
+	<settings src="settings/BSZULM-ebsco.xml"/>
+    <settings>
+        <set target="ebsco/eds" name="pz:name" value="EBSCO/EDS"/>
+    </settings>
+	
+
+	<settings src="settings/BSZULM-solr.xml"/>
+	<settings>
+		<set target="boss2/swb" name="pz:name" value="SWB SOLR-Index"/>
+        </settings>
+
+	<xi:include href="metadata/BSZ-default.xml"/>
+
+</service>

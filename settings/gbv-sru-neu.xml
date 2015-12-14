@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings target="sru.gbv.de/*" xmlns="http://www.indexdata.com/pazpar2/1.0">
+<!--
+	GBV SRU Server
+	* Pica-style search keys
+	* transformations:
+		-> gbv-cleaner to fix a few quirks of the GBV data
+		-> ../tmarc.xsl
+		-> iso-639-2-to-639-2b-converter to convert deprecated language codes
+		-> catalogue-url-hint+id.xsl to insert catalogue-urls into the records based
+			on the catalogue-url-prefix value
+	* set up catalogueURLHints and other basic configuration for a number of databases
+
+	2010-2013: Sven-S. Porst, SUB Göttingen <porst@sub.uni-goettingen.de>
+-->
+
+	<!-- SRU 1.1 GET -->
+	<set name="pz:sru" value="get"/>
+	<set name="pz:sru_version" value="1.1"/>
+
+	<!--
+		Default Search settings:
+		* ANDed word search for most fields (s=al)
+		* no truncation by default but giving the user the option to
+			opt for right truncation by adding a ? (t=r)
+		* use attributes have names pica.XXX where XXX is the Pica search key
+	-->
+	<set name="pz:cclmap:term" value="u=pica.all s=al t=r"/>
+
+	<!--
+		Full-text search; map the search key to the all index
+		and change that mapping only for the catalogues supporting full text search.
+	-->
+	<set name="pz:cclmap:fulltext" value="u=pica.all s=al t=r"/>
+	<set name="pz:cclmap:fulltext" value="u=pica.txt s=al t=r" target="sru.gbv.de/gvk"/>
+	<set name="pz:cclmap:fulltext" value="u=pica.txt s=al t=r" target="sru.gbv.de/opac-de-7"/>
+
+	<set name="pz:cclmap:title" value="u=pica.tit s=al t=r"/>
+	<set name="pz:cclmap:person" value="u=pica.per t=r"/>
+	<!-- Use SHA (8542) for journal title search as ZTI (21) is just a phrase search. -->
+	<set name="pz:cclmap:journal" value="u=pica.sha t=r"/>
+	<set name="pz:cclmap:subject" value="u=pica.slw s=al t=r"/>
+
+	<!-- Logic for recognising date ranges is built into the index, we can send the string right there. -->
+	<set name="pz:cclmap:date" value="u=pica.erj"/>
+
+	<set name="pz:cclmap:isbn" value="u=pica.isb t=r"/>
+	<set name="pz:cclmap:issn" value="u=pica.iss t=r"/>
+
+	<!--
+		… probably only available in opac-de-7:
+		lkl: Lokale Klassifikation (GOK)
+		brk: Bandrealkatalog
+		osg: Online Contents SSG
+		sst: Sonderstandort
+	-->
+	<set name="pz:cclmap:lkl" value="u=pica.lkl s=1 t=r"/>
+	<set name="pz:cclmap:brk" value="u=pica.brk s=1 t=1"/>
+	<set name="pz:cclmap:osg" value="u=pica.osg s=1 t=r"/>
+	<set name="pz:cclmap:sst" value="u=pica.sst s=1 t=r"/>
+
+
+	<!--
+		Fake search key for Freiberg classification, mapped to the BKL field.
+		Should not return any results in GBV.
+	-->
+	<set name="pz:cclmap:fbg" value="u=pica.bkl s=1 t=r"/>
+
+	<set name="pz:cclmap:msc" value="u=pica.msc s=1 t=r"/>
+
+	<!--
+		NEL (8064) - month in which the volume was added to the local catalogue: Right-truncated search.
+		Field content has format YYYYMM.
+	-->
+	<set name="pz:cclmap:nel" value="u=pica.nel t=1"/>
+
+	<!-- Map additional Pica search keys to pazpar2. -->
+	<set name="pz:cclmap:thm" value="u=pica.thm t=r"/>
+	<set name="pz:cclmap:sww" value="u=pica.sww t=r"/>
+	<set name="pz:cclmap:ddc" value="u=pica.ddc t=r"/>
+	<set name="pz:cclmap:bkl" value="u=pica.bkl t=r"/>
+	<set name="pz:cclmap:ppn" value="u=pica.ppn t=r"/>
+	<set name="pz:cclmap:bib" value="u=pica.bib t=r"/>
+	<set name="pz:cclmap:language" value="u=pica.taa s=1"/>
+	<set name="pz:cclmap:url" value="u=pica.url t=r"/>
+	<set name="pz:cclmap:nea" value="u=pica.nea t=r"/>
+
+
+
+	<!-- Set up limit maps for our facets where possible. -->
+	<!--	<set name="pz:limitmap:medium" value="local:medium"/> -->
+	<set name="pz:limitmap:language" value="rpn:@attr 1=pica.taa"/>
+	<set name="pz:limitmap:date" value="rpn:@attr 1=pica.jah"/>
+
+
+	<!-- SRU schema: Request turbomarc format. -->
+	<set name="pz:elements" value="turbomarc"/>
+
+
+	<!-- Fetch turbomarc and normalise. -->
+	<set name="pz:nativesyntax" value="txml;utf-8"/>
+	<set name="pz:xslt" value="xsl/gbv-cleaner.xsl,pazpar2-etc/tmarc.xsl,xsl/iso-639-2-to-639-2b-converter.xsl,xsl/catalogue-url-hint+id.xsl,xsl/gbv-parent-catalogue-url-postprocess.xsl,xsl/zdb-number.xsl,xsl/url-remove-ciando.xsl,xsl/merge-fields.xsl"/>
+
+
+
+	<!-- SUB Göttingen OPAC. -->
+	<set name="pz:maxrecs" target="sru.gbv.de/opac-de-7" value="500"/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/opac-de-7" value="http://gso.gbv.de/DB=2.1/PRS=HOL/HILN=40/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/proj-subgoeolr" value="https://opac.sub.uni-goettingen.de/DB=1/PPNSET?PPN="/>
+
+
+	<!-- TIB Hannover catalogue URLs. -->
+	<set target="sru.gbv.de/gvk-tib" name="pz:url" value="sru.gbv.de/gvk"/>
+	<set target="sru.gbv.de/gvk-tib" name="pz:pqf_strftime" value="@not @and %% @attr 1=pica.bib 0089 @attr 1=pica.bib 0007"/>
+	<set target="sru.gbv.de/gvk-tib" name="catalogueURLHintPrefix"  value="http://gso.gbv.de/DB=2.1/PRS=HOL/HILN=70/PPNSET?PPN="/>
+
+
+	<!-- Central GBV catalogue URLs. -->
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/natliz" value="http://gso.gbv.de/DB=1.50/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/natlizzss" value="http://gso.gbv.de/DB=1.55/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/gbvcat" value="http://gso.gbv.de/DB=1.1/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/gvk" value="http://gso.gbv.de/DB=2.1/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/menschenrechte" value="http://gso.gbv.de/DB=2.1/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olc" value="http://gso.gbv.de/DB=2.3/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-his" value="http://gso.gbv.de/DB=2.35/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-zge" value="http://gso.gbv.de/DB=2.36/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-ggo" value="http://gso.gbv.de/DB=2.38/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-ast" value="http://gso.gbv.de/DB=2.43/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-nord" value="http://gso.gbv.de/DB=2.47/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-ang" value="http://gso.gbv.de/DB=2.75/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-mat" value="http://gso.gbv.de/DB=2.77/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-pol" value="http://gso.gbv.de/DB=2.89/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/olcssg-bal" value="http://gso.gbv.de/DB=2.151/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/fachopac-ast" value="http://gso.gbv.de/DB=2.112/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/fachopac-fin" value="http://gso.gbv.de/DB=2.113/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/fachopac-ggo" value="http://gso.gbv.de/DB=2.114/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/fachopac-vifanord" value="http://gso.gbv.de/DB=2.119/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/fachopac-mat" value="http://gso.gbv.de/DB=2.122/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/amb" value="http://gso.gbv.de/DB=2.910/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/ikar" value="http://gso.gbv.de/DB=1.68/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-wfr" value="http://gso.gbv.de/DB=5.1/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-dfl" value="http://gso.gbv.de/DB=5.2/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-elw" value="http://gso.gbv.de/DB=5.3/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-ecc" value="http://gso.gbv.de/DB=5.4/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-eeb" value="http://gso.gbv.de/DB=5.5/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-mml" value="http://gso.gbv.de/DB=5.6/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-mme" value="http://gso.gbv.de/DB=5.7/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-eai" value="http://gso.gbv.de/DB=5.8/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-nel" value="http://gso.gbv.de/DB=5.9/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-rth" value="http://gso.gbv.de/DB=5.10/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-pio" value="http://gso.gbv.de/DB=5.55/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-cup" value="http://gso.gbv.de/DB=5.62/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/zdb-1-rth" value="http://gso.gbv.de/DB=5.72/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/eromm" value="http://gso.gbv.de/DB=2.8/PPNSET?PPN="/>
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/vd17" value="http://gso.gbv.de/DB=1.28/PPNSET?PPN="/>
+
+	<set name="catalogueURLHintPrefix" target="sru.gbv.de/proj-ssgpol" value="http://gso.gbv.de/DB=1.28/PPNSET?PPN="/>
+
+	<!-- Set up database restrictions. -->
+	<set name="pz:allow" target="sru.gbv.de/zdb-1-pio" value="0"/>
+	<set name="pz:allow" target="sru.gbv.de/olc*" value="0"/>
+</settings>

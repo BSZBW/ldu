@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings target="eiger.bsz-bw.de:8000/summon" xmlns="http://www.indexdata.com/pazpar2/1.0">
+<!--
+	Configuration for data from Summon indexes.
+
+	2014-2015: Clemens Elmlinger, BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
+-->
+
+  <set target="eiger.bsz-bw.de:8000/summon" name="pz:name" value="TSUMMON (SRU)"/>
+
+  <set name="pz:sru" value="get"/>
+  <set name="pz:sru_version" value="1.1"/>
+
+
+  <!-- mapping for unqualified search -->
+  <set name="pz:cclmap:term" value="u=cql.serverChoice t=r s=al"/>
+
+  <!-- SRU Indices -->
+  <set name="pz:cclmap:title" value="1=title s=al t=r"/>
+  <set name="pz:cclmap:person" value="1=au s=al t=r"/>
+  <set name="pz:cclmap:au" value="1=au s=al t=r"/>
+  <set name="pz:cclmap:subject" value="1=subject s=al t=r"/>
+  <set name="pz:cclmap:su" value="1=su s=al t=r"/>
+  <set name="pz:cclmap:isbn" value="1=isbn t=r"/>
+  <set name="pz:cclmap:issn" value="1=issn t=r"/>
+  <set name="pz:cclmap:date" value="1=date s=4 r=o"/>
+  <set name="pz:cclmap:ppn" value="1=recid s=1 t=r"/>
+
+  <!-- SRU schema. Eg. "dc" or "marcxml" -->
+  <set name="pz:elements" value="summon"/>
+
+  <!-- Sortmap >
+  <set name="pz:sortmap:medium" value="embed:medium"/>
+  <set name="pz:sortmap:author" value="embed:au"/-->
+
+  <set name="pz:maxrecs" value="150"/>
+  <set name="pz:present_chunk" value="0"/>
+  <!-- set name="pz:native_score" value="score"/-->
+  <!-- Result normalization settings -->
+  <set name="pz:nativesyntax" value="xml"/>
+  <set name="pz:xslt" value="pazpar2-etc/summon-pz2.xsl,xsl/BSZ-summon-language.xsl,xsl/merge-fields.xsl,xsl/BSZ-final.xsl,xsl/BSZ-dedup.xsl"/>
+</settings>
+

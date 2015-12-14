@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.indexdata.com/pazpar2/1.0">
+	<!-- we try to keep same order as in marc21.xsl -->
+	<metadata name="language" brief="yes" merge="unique" termlist="yes" limitmap="local:language" setting="parameter" mergekey="optional"/>
+	<metadata name="id" brief="yes"/>
+	<metadata name="lccn" merge="unique"/>
+	<metadata name="zdb-number" brief="yes" merge="unique"/>
+	<metadata name="oclc-number" brief="yes"/>
+	<metadata name="isbn" brief="yes" merge="unique" rank="8" mergekey="optional"/>
+	<metadata name="issn" brief="yes" merge="unique" rank="8" mergekey="optional"/>
+	<metadata name="eissn" brief="yes" merge="unique"/>
+	<metadata name="pissn" brief="yes" merge="unique"/>
+	<metadata name="doi" brief="yes" merge="unique"/>
+	<metadata name="tech-rep-nr"/>
+	<metadata name="author-boost" brief="yes" rank="2"/>
+	<metadata name="author" brief="yes" merge="unique" sortkey="skiparticle" limitmap="ccl: au" termlist="yes" rank="1"/>
+	<metadata name="other-person" brief="yes" rank="1" merge="unique"/>
+	<metadata name="author-title"/>
+	<metadata name="author-date"/>
+	<metadata name="corporate-name"/>
+	<metadata name="corporate-location"/>
+	<metadata name="corporate-date"/>
+	<metadata name="meeting-name"/>
+	<metadata name="meeting-location"/>
+	<metadata name="meeting-date"/>
+	<metadata name="date" brief="yes" sortkey="numeric" type="year" merge="range" termlist="yes" limitmap="ccl: date"/>
+	<metadata name="title" brief="yes" sortkey="skiparticle" merge="longest" rank="1" />
+	<metadata name="book-title" brief="yes" rank="7" />
+	<metadata name="title-remainder" brief="yes" rank="3" merge="unique"/>
+	<metadata name="title-responsibility" brief="yes" rank="1" merge="longest"/>
+	<metadata name="title-dates" brief="yes" merge="longest"/>
+	<metadata name="title-medium" brief="yes" merge="longest"/>
+	<metadata name="title-number-section" brief="yes" sortkey="skiparticle" merge="unique"/>
+	<metadata name="title-complete"/>
+	<metadata name="medium" brief="yes" merge="unique" termlist="yes" rank="3" limitmap="local:" setting="parameter" mergekey="optional"/>
+	<metadata name="iii-id" brief="yes" merge="no"/>
+	<metadata name="edition" rank="2" brief="yes"/>
+	<metadata name="publication-place" brief="yes" merge="unique"/>
+	<metadata name="publication-name" brief="yes" merge="unique"/>
+	<metadata name="publication-date"/>
+	<metadata name="physical-extent" brief="yes"/>
+	<metadata name="physical-format"/>
+	<metadata name="physical-dimensions"/>
+	<metadata name="physical-accomp"/>
+	<metadata name="physical-unittype"/>
+	<metadata name="physical-unitsize"/>
+	<metadata name="physical-specified"/>
+	<metadata name="mapscale" brief="yes" merge="unique" mergekey="optional"/>
+
+	<metadata name="series-title" brief="yes" merge="unique"/>
+	<metadata name="multivolume-title" brief="yes" rank="5" merge="longest"/>
+	<metadata name="parent-id" brief="yes"/>
+
+	<metadata name="description" brief="yes" merge="unique" rank="1"/>
+	<metadata name="abstract" brief="yes" merge="unique" rank="1"/>
+	<metadata name="subject-long"/>
+	<metadata name="subject" brief="yes" termlist="yes" limitmap="ccl: su" rank="2"/>
+	<metadata name="subject-boost" brief="yes" rank="4"/>
+	<metadata name="classification-msc" brief="yes"/>
+	<metadata name="snippet" brief="yes" merge="unique"/>
+	<metadata name="electronic-url" brief="yes" merge="no"/>
+	<metadata name="electronic-format-type" />
+	<metadata name="electronic-format-instruction" />
+	<metadata name="electronic-text" brief="yes" merge="no"/>
+	<metadata name="electronic-note"/>
+	<metadata name="link-resolver" brief="yes" merge="no"/>
+	<metadata name="citation"/>
+	<metadata name="holding"/>
+	<metadata name="fulltext"/>
+	<metadata name="locallocation" brief="yes"/>
+	<metadata name="callnumber" brief="yes"/>
+	<metadata name="publicnote" brief="yes"/>
+
+	<!-- journals -->
+	<metadata name="journal-title" brief="yes" rank="5" merge="unique"/>
+	<metadata name="journal-title-abbrev" merge="unique"/>
+	<metadata name="journal-subpart" brief="yes" merge="unique"/>
+	<metadata name="volume-number" brief="yes" merge="unique"/>
+	<metadata name="issue-number" brief="yes" merge="unique"/>
+	<metadata name="issue-date"/>
+	<metadata name="pages-number" brief="yes" merge="unique"/>
+
+	<metadata name="url_recipe" setting="postproc" brief="yes" merge="no"/>
+	<metadata name="open_url_resolver" setting="parameter" merge="no"/>
+	<metadata name="open-url" merge="longest"/>
+	<metadata name="use_url_proxy" setting="postproc" brief="yes" merge="no"/>
+	<metadata name="catalogue-url" brief="yes"/>
+	<metadata name="parent-catalogue-url" brief="yes"/>
+
+	<metadata name="publisher" merge="unique"/>
+	<metadata name="available" brief="yes" merge="first" termlist="yes" limitmap="local:" setting="parameter"/>
+	<metadata name="due"/>
+	<metadata name="thumburl" brief="yes" merge="unique"/>
+	<metadata name="score" rank="10"/>
+
+	<metadata name="creator" brief="yes" merge="unique"/>
+	<metadata name="country" brief="yes" termlist="yes" merge="unique"/>
+	<metadata name="source-type" brief="yes" termlist="yes" merge="unique"/>
+	<metadata name="catalogueURLHintPrefix" setting="parameter"/>
+	<metadata name="catalogueURLHintPostfix" setting="parameter"/>
+
+	<metadata name="merge-title" mergekey="optional"/>
+	<metadata name="merge-author" brief="yes" rank="1" sortkey="skiparticle" mergekey="optional" merge="longest"/>
+	<metadata name="merge-author-boost" brief="yes" rank="8"/>
+	
+	<!-- BSZ -->
+	<metadata name="avdata" brief="yes" merge="first"/>
+	<metadata name="coverurls" brief="yes"/>
+	<metadata name="coverurlm" brief="yes"/>
+	<metadata name="coverurll" brief="yes"/>
+	<metadata name="department" brief="yes" termlist="yes" merge="unique" limitmap="local:department" setting="parameter"/>
+	<metadata name="histogram" brief="yes"/>
+        <metadata name="countEx" brief="yes" merge="first"/>
+        <metadata name="countAvail" brief="yes" merge="first"/>
+</metadata>
