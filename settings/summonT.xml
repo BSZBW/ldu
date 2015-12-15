@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings target="eiger.bsz-bw.de:8000/summon" xmlns="http://www.indexdata.com/pazpar2/1.0">
+<settings target="<Summon-SRU-Server>:8000/summon" xmlns="http://www.indexdata.com/pazpar2/1.0">
 <!--
 	Configuration for data from Summon indexes.
 
 	2014-2015: Clemens Elmlinger, BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
 -->
 
-  <set target="eiger.bsz-bw.de:8000/summon" name="pz:name" value="TSUMMON (SRU)"/>
+  <set target="<SRU-Server>:8000/summon" name="pz:name" value="TSUMMON (SRU)"/>
 
   <set name="pz:sru" value="get"/>
   <set name="pz:sru_version" value="1.1"/>

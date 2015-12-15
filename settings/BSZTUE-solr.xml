@@ -15,14 +15,11 @@
 
 	<!-- full-text search; maps to unqualified search if it doesn’t exist -->
 	<set name="pz:cclmap:fulltext" value="s=al t=r"/>
-
 	<set name="pz:cclmap:title" value="1=title s=al t=r"/>
 	<!--set name="pz:cclmap:person" value="1=author-letter t=r"/-->
 	<set name="pz:cclmap:author" value="1=author t=r"/>
 	<set name="pz:cclmap:au" value="1=author t=r"/>
-
 	<set name="pz:cclmap:date" value="1=publishDate r=r"/>
-
 	<set name="pz:cclmap:subject" value="1=topic s=al t=r"/>
 	<set name="pz:cclmap:su" value="1=topic s=al t=r"/>
 	<set name="pz:cclmap:ppn" value="1=id s=al t=r"/>
@@ -33,9 +30,9 @@
 	<set name="pz:nativesyntax" value="xml;utf-8"/>
 
 	<!-- Result filter settings -->
-    <set name="pz:url" value="boss2.bsz-bw.de:8180/solr/biblio/select?boost=recip%28ms%28NOW%2CpublishDateBoost%29%2C3.16e-10%2C100%2C1%29&amp;fq=isil%3A&quot;DE-21&quot;&amp;fq=format%3A%22eBook%22"/>
+    <set name="pz:url" value="<BOSS-Server>:8180/solr/biblio/select?boost=recip%28ms%28NOW%2CpublishDateBoost%29%2C3.16e-10%2C100%2C1%29&amp;fq=isil%3A&quot;DE-21&quot;&amp;fq=format%3A%22eBook%22"/>
 
 	<!-- General BSZ Index XSL setup. -->
-        <set name="pz:xslt" value="pazpar2-etc/solr-pz2.xsl,xsl/solr-BSZTUE.xsl,xsl/BSZ-solr-language.xsl,xsl/BSZ-daia-verf.xsl,xsl/merge-fields.xsl,xsl/BSZ-final.xsl,xsl/BSZ-dedup.xsl"/>
+    <set name="pz:xslt" value="pazpar2-etc/solr-pz2.xsl,xsl/solr-BSZTUE.xsl,xsl/BSZ-solr-language.xsl,xsl/BSZ-daia-verf.xsl,xsl/merge-fields.xsl,xsl/BSZ-final.xsl,xsl/BSZ-dedup.xsl"/>
 
 </settings>

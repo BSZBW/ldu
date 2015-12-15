@@ -33,8 +33,7 @@
 	<set name="pz:nativesyntax" value="xml;utf-8"/>
 
 	<!-- Result filter settings -->
-	<set name="pz:recordfilter" value="isil=DE-352"/>
-	<set name="pz:url" value="boss2.bsz-bw.de:8180/solr/biblio/select?fq=isil%3A&quot;DE-352&quot;+OR+isil%3A&quot;DE-352E&quot;"/>
+	<set name="pz:url" value="<BOSS-Server>:8180/solr/biblio/select?fq=isil%3A&quot;DE-352&quot;+OR+isil%3A&quot;DE-352E&quot;"/>
 
 	<!-- General BSZ Index XSL setup. -->
 	<set name="pz:xslt" value="pazpar2-etc/solr-pz2.xsl,xsl/solr-BSZ.xsl,xsl/BSZ-solr-language.xsl,xsl/BSZ-libero-verf.xsl,xsl/merge-fields.xsl,xsl/BSZ-final.xsl,xsl/BSZ-dedup.xsl"/>

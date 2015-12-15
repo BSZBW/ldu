@@ -1,3 +1,5 @@
+# Informations (part of a repository created by SUB Goettingen)
+
 # Modifications of Index Data’s etc files for pazpar2
 This repository contains modified copies of [Index Data](http://www.indexdata.com/)’s configuration files for pazpar2 from the [»etc« folder](http://git.indexdata.com/?p=pazpar2.git;a=tree;f=etc;) in the pazpar2 project.
 
@@ -31,6 +33,11 @@ Rewrite of [Index Data’s solr-pz2.xsl](http://git.indexdata.com/?p=pazpar2.git
 * handles more field types
 * does not introduce a »medium« field
 
+### NEW! summon-pz2.xsl
+Converting Summon Documents to records of pz:metadata elements.
+
+### NEW! ebsco-pz2.xsl
+Converting EDS/EBSCO Documents to records of pz:metadata elements.
 
 ### check-pazpar2.sh
 Addition of `-P` parameter to query pazpar2 at a specific path on the server.

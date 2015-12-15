@@ -15,19 +15,7 @@
 
 	2014/2015: Clemens Elmlinger, BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
 -->
-        <rank cluster="no"/>
-
-        <!-- settings src="settings/swbKN.xml"/>
-        <settings>
-                <set target="z3950n.bsz-bw.de:20210/swb367" name="pz:name" value="SWB Lokale Sicht UB Konstanz"/>
-
-        </settings>
-        
-        <settings src="settings/summonT.xml"/>
-        <settings>
-		<set target="eiger.bsz-bw.de:8000/summon" name="pz:name" value="Summon"/>
-        </settings -->
-
+    <rank cluster="no"/>
 
 	<!--settings src="settings/gbv-sru-neu.xml"/>
 	<settings>
@@ -37,10 +25,10 @@
 		<set target="sru.gbv.de/natlizzss" name="pz:name" value="Nationallizenzen Zeitschriften"/>
 	</settings-->
 	
-	<settings src="settings/BSZULM-ebsco.xml"/>
+	<!--settings src="settings/BSZULM-ebsco.xml"/>
     <settings>
         <set target="ebsco/eds" name="pz:name" value="EBSCO/EDS"/>
-    </settings>
+    </settings-->
 	
 
 	<settings src="settings/BSZULM-solr.xml"/>
