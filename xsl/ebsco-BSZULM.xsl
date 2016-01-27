@@ -102,8 +102,8 @@ contains(../pz:metadata[@type='publicationtype'],'eBook')">
 			<xsl:value-of select="."/>
 		</pz:metadata>
 
-                <xsl:if test="contains(../pz:metadata[@type='format'],'Book') or 
-contains(../pz:metadata[@type='format'],'eBook')">
+                <xsl:if test="contains(../pz:metadata[@type='publicationtype'],'Book') or 
+contains(../pz:metadata[@type='publicationtype'],'eBook')">
 	           <!-- Boosting for book and ebook -->
 		   <pz:metadata type="subject-boost">
 			<xsl:value-of select="."/>
@@ -138,57 +138,44 @@ contains(../pz:metadata[@type='format'],'eBook')">
 	</xsl:template>
 
 
-	<xsl:template match="pz:metadata[@type='format']">
+	<xsl:template match="pz:metadata[@type='publicationtype']">
 
 		<pz:metadata type="medium">
 			<xsl:choose>
-				<xsl:when test=".='Article'">article</xsl:when>
+				<xsl:when test=".='Article????'">article</xsl:when>
 
-				<xsl:when test=".='Journal' or .='Newspaper'">journal</xsl:when>
+				<xsl:when test=".='Academic Journal' or .='Magazine' or .='News'">journal</xsl:when>
 
-				<xsl:when test=".='eJournal'">ejournal</xsl:when>
+				<xsl:when test=".='eJournal????'">ejournal</xsl:when>
 
-                                <xsl:when test=".='Dissertation'">diss</xsl:when> 
+                <xsl:when test=".='Dissertation/These'">diss</xsl:when> 
                                 
-                                <xsl:when test=".='Book'">book</xsl:when>
+                <xsl:when test=".='Book' ">book</xsl:when>
 
 				<xsl:when test=".='eBook'">ebook</xsl:when>
 
-				<xsl:when test=".='Musical Score' or .='Audio'
+				<xsl:when test=".='Music Score' or .='Audio'
                                 or .='Cassette'">audio</xsl:when>
 				
-                                <xsl:when test=".='Software' 
-                                or .='Microfilm'">datamed</xsl:when>
+                <xsl:when test=".='Electronic Resource'">datamed</xsl:when>
 
-				<xsl:when test=".='Video' or .='VHS'">video</xsl:when>
+				<xsl:when test=".='Video'">video</xsl:when>
 
-                                <xsl:when test=".='Map' or .='Slide'
-                                or .='Photo'">map</xsl:when>
+                <xsl:when test=".='Map'">map</xsl:when>
 
-                                <xsl:when test=".='Kit' or .='Braille'
-                                or .='Physical Object' or .='Electronic'
-                                or .='Manuscript'
-                                or .='Serial'">other</xsl:when>
+                <xsl:when test=".='Non-Print Resource' or .='Research Starter'
+                                or .='Government Document' or .='Primary Source Document'
+                                or .='Trade Publication' or .='Review'
+                                or .='Report'">other</xsl:when>
+								
+				<xsl:when test=".='Conference Material'">proceeding</xsl:when>
 
-                                <xsl:when test=".='CD' or .='DVD'">
-                                  <xsl:choose>
-                                  <xsl:when test="../pz:metadata[@type='content']='vide'">
-                            	    video
-                                  </xsl:when>
-                                  <xsl:when test="../pz:metadata[@type='content']='muto'">
-                            	    audio
-                                  </xsl:when>
-                                  <xsl:otherwise>
-                            	    datamed
-                                  </xsl:otherwise>
-                                  </xsl:choose>
-                                </xsl:when>
-
-                                <xsl:otherwise>
-                                  <xsl:if test="../pz:metadata[@type='content']='gkko'">
+				<xsl:when test=".='Book' or .='Biography'">book</xsl:when>
+                <!--xsl:otherwise>
+                               <xsl:if test="../pz:metadata[@type='content']='gkko'">
                             	    proceeding
                                   </xsl:if>
-                                </xsl:otherwise>
+                                </xsl:otherwise-->
 				<!-- unclean: keep original media type string -->
 			</xsl:choose>
 		</pz:metadata>
