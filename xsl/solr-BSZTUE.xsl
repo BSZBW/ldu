@@ -13,9 +13,11 @@
 	<xsl:output indent="yes" method="xml" version="1.0" encoding="UTF-8"/>
 
 	<xsl:template match="@*|node()">
-		<xsl:copy>
-			<xsl:apply-templates select="@*|node()"/>
-		</xsl:copy>
+	    <xsl:if test="not (contains(pz:metadata[@type='multipart_set'],'a'))">
+            <xsl:copy>
+                <xsl:apply-templates select="@*|node()"/>
+            </xsl:copy>
+        </xsl:if>
 	</xsl:template>
 
         <xsl:variable name="isbn13">
