@@ -5,6 +5,7 @@
  * PHP version 5
  *
  * Copyright (C) Villanova University 2007.
+ * Modified by C. Elmlinger BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2,

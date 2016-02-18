@@ -3,7 +3,23 @@
 <!--
 	Configuration for UBTUE data from EBSCO/EDS indexes.
 
-	2014-2015: Clemens Elmlinger, BSZ Konstanz <clemens.elmlinger@bsz-bw.de>-->
+	2014-2015: Clemens Elmlinger, BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software Foundation,
+    Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.	
+	
+-->
 
 	<set name="pz:sru" value="solr"/>
 	<set name="pz:sru_version" value="1.4"/>
@@ -30,7 +46,7 @@
 	<set name="pz:nativesyntax" value="xml;utf-8"/>
 
 	<!-- Result filter settings -->
-    <set name="pz:url" value="http://<EDS-Proxy>:80/rdsproxy/api/uniulhbs/select?guest=y&amp;sid=<TO BE SPECIFIED!>&amp;wt=xml"/>
+    <set name="pz:url" value="http://EDS-Proxy:80/rdsproxy/api/uniulhbs/select?guest=y&amp;sid=<TO BE SPECIFIED!>&amp;wt=xml"/>
 
 	<!-- General BSZ Index XSL setup. -->
     <set name="pz:xslt" value="pazpar2-etc/ebsco-pz2.xsl,xsl/ebsco-BSZULM.xsl,xsl/BSZ-solr-language.xsl,xsl/BSZ-libero-verf.xsl,xsl/merge-fields.xsl,xsl/BSZ-final.xsl,xsl/BSZ-dedup.xsl"/>

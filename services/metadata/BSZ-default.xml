@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata xmlns="http://www.indexdata.com/pazpar2/1.0">
-	<!-- we try to keep same order as in marc21.xsl -->
+	<!-- 
+	
+	BSZ-default.xsl
+	Pazpar2 intermediate language in the form used by LDU.
+
+	Mostly based on Indexdata’s original default.xml from
+	http://git.indexdata.com/?p=pazpar2.git;a=blob_plain;f=etc/tmarc.xsl;hb=HEAD
+	modified by C. Elmlinger BSZ Konstanz <clemens.elmlinger@bsz-bw.de>
+ 
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software Foundation,
+    Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.	
+	
+	-->
+
 	<metadata name="language" brief="yes" merge="unique" termlist="yes" limitmap="local:language" setting="parameter" mergekey="optional"/>
 	<metadata name="id" brief="yes"/>
 	<metadata name="lccn" merge="unique"/>
